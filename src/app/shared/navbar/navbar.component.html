@@ -4,7 +4,7 @@
       <img *ngIf="ojo" (click)="onClick1()" src="/assets/img/ojo.png" width="40" height="40" />
       <img *ngIf="!ojo" (click)="onClick2()" src="/assets/img/ojo.png" width="40" height="40" />
     </a>
-    <a *ngIf="modalService.online || modalService.ojo2" class="navbar-brand ml-3">
+    <a *ngIf="modalService.online || !modalService.ojo2" class="navbar-brand ml-3">
       <img src="/assets/img/ojo.png" width="40" height="40" />
     </a>
     <a class="navbar-brand colorName4 ml-3">
@@ -56,14 +56,14 @@
 
         <div class="text-center mx-5">
 
-          
+
           <i *ngIf="login1" class="fas fa-sign-in-alt colorNegro16 fa-lg" data-toggle="tooltip" data-placement="left" title="Login" (click)="entrar()"></i>
-          
+
           <div *ngIf="input1" class="input-group-sm " (keyup.enter)="inputLogin()">
             <input type="password" id="focusClave" [(ngModel)]="clave" name="clave" placeholder="Press Enter" class="form-control backInput15" aria-describedby="inputGroup-sizzing-sm">
           </div>
-          
-          
+
+
           <i *ngIf="modalService.online" class="fas fa-sign-out-alt fa-lg mr-4 colorName3 cursor7" (click)="logOut()"></i>
           <i *ngIf="modalService.online" class="fas fa-wifi fa-lg colorName3"></i>
         </div>

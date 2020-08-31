@@ -113,8 +113,9 @@ export class ModalsComponent implements OnInit {
       });
       this.limpiarUsuario();
       this.salirLogin();
+
       $(".navbar-collapse").collapse("hide");
-      this.modalService.online=true
+      this.modalService.online = true;
     } else {
       const Toast = Swal.mixin({
         toast: true,
@@ -143,7 +144,7 @@ export class ModalsComponent implements OnInit {
   }
 
   salirLogin() {
-    this.limpiarUsuario()
+    this.limpiarUsuario();
     $("#loginModal").modal("hide");
   }
 }
