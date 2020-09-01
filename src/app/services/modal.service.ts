@@ -1,25 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 declare let $: any;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ModalService {
-
   privacidad: boolean;
   privacidadSeleccionada: boolean;
   online: boolean;
-  ojo2:boolean
-
-  constructor() { }
+  ojo2: boolean;
+  paginaActual = 1;
+  constructor() {}
 
   politicaPrivacidad() {
     this.privacidad = false;
     this.privacidadSeleccionada = true;
-    $('input[type="checkbox"]').prop('checked', false);
-    $('#alerta').modal('hide');
+    $('input[type="checkbox"]').prop("checked", false);
+    $("#alerta").modal("hide");
     setTimeout(() => {
-      $('#privacidad').modal();
+      $("#privacidad").modal();
     }, 500);
   }
 
@@ -29,25 +28,43 @@ export class ModalService {
 
   contacto() {
     setTimeout(() => {
-      $('input[type="checkbox"]').prop('checked', false);
+      $('input[type="checkbox"]').prop("checked", false);
       this.privacidadSeleccionada = true;
     }, 100);
-    $('#alerta').modal('hide');
+    $("#alerta").modal("hide");
     // Abrir modal contacto y cerrar modal alerta
     setTimeout(() => {
-      
-      $('#contacto').modal();
+      $("#contacto").modal();
     }, 500);
-    
+
     $(document).ready(() => {
-      $('#contacto').on('shown.bs.modal', () => {
-        $('#focusInput').trigger('focus');
+      $("#contacto").on("shown.bs.modal", () => {
+        $("#focusInput").trigger("focus");
       });
     });
   }
-  logOut(){
-    this.online=false
-    this.ojo2=true
-    
+  logOut() {
+    this.online = false;
+    this.ojo2 = true;
+  }
+
+  paginar(arg) {
+    this.paginaActual = arg;
+  }
+
+  cerrarTec() {
+    $("#modalTecnologias").modal("hide");
+
+    setTimeout(() => {
+      this.paginar(1);
+    }, 500);
+  }
+
+  cerrarSobreMi() {
+    $("#sobreMi").modal("hide");
+
+    setTimeout(() => {
+      this.paginar(1);
+    }, 500);
   }
 }

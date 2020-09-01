@@ -18,4 +18,8 @@ export class InicioComponent implements OnInit {
   tecnologias() {
     $("#modalTecnologias").modal();
   }
+
+  sobreMi() {
+    $("#sobreMi").modal();
+  }
 }

@@ -19,7 +19,7 @@
             <label
               (click)="paginar(1)"
               class="cursor7 btn-sm mr-2 {{
-                paginaActual === 1 ? 'btn-warning' : 'btn-outline-warning'
+                mServ.paginaActual === 1 ? 'btn-warning' : 'btn-outline-warning'
               }}"
             >
               1
@@ -27,7 +27,7 @@
             <label
               (click)="paginar(2)"
               class="cursor7 btn-sm mr-2 {{
-                paginaActual === 2 ? 'btn-warning' : 'btn-outline-warning'
+                mServ.paginaActual === 2 ? 'btn-warning' : 'btn-outline-warning'
               }}"
             >
               2
@@ -35,14 +35,14 @@
             <label
               (click)="paginar(3)"
               class="cursor7 btn-sm {{
-                paginaActual === 3 ? 'btn-warning' : 'btn-outline-warning'
+                mServ.paginaActual === 3 ? 'btn-warning' : 'btn-outline-warning'
               }}"
             >
               3
             </label>
           </div>
 
-          <div *ngIf="paginaActual === 1" class="container colorTexto10">
+          <div *ngIf="mServ.paginaActual === 1" class="container colorTexto10">
             <p class="font-weight-light text-justify">
               <i class="fab fa-angular fa-lg mr-3"></i>
               <span class="mr-2">Angular 1:</span>
@@ -60,7 +60,7 @@
             </p>
           </div>
 
-          <div *ngIf="paginaActual === 2" class="container colorTexto10">
+          <div *ngIf="mServ.paginaActual === 2" class="container colorTexto10">
             <p class="font-weight-light text-justify">
               <i class="fab fa-angular fa-lg mr-3"></i>
               <span class="mr-2">Angular 2:</span>
@@ -78,7 +78,7 @@
             </p>
           </div>
 
-          <div *ngIf="paginaActual === 3" class="container colorTexto10">
+          <div *ngIf="mServ.paginaActual === 3" class="container colorTexto10">
             <p class="font-weight-light text-justify">
               <i class="fab fa-angular fa-lg mr-3"></i>
               <span class="mr-2">Angular 3:</span>
@@ -104,6 +104,46 @@
           >
             Salir
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal Sobre Mí-->
+<div class="modal fade mt-5 py-5" id="sobreMi" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content colorModal11">
+      <div class="container backModal12">
+        <div class="modal-body text-center colorName3">
+          <h2> <u class="text-capitalize">federica daniela jiménez</u></h2><br>
+          <p class="font-weight-light text-justify colorTexto10 tab27">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa repellendus harum non laboriosam eligendi
+            impedit provident quod placeat ipsum nesciunt, debitis sunt modi accusamus earum quasi ea repudiandae et qui
+            dolorum, accusantium mollitia dicta exercitationem corrupti.
+          </p>
+          <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa repellendus harum non laboriosam eligendi
+            impedit provident quod placeat ipsum nesciunt, debitis sunt modi accusamus earum quasi ea repudiandae et qui
+            dolorum, accusantium mollitia dicta exercitationem corrupti.
+          </p>
+          <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa repellendus harum non laboriosam eligendi
+            impedit provident quod placeat ipsum nesciunt, debitis sunt modi accusamus earum quasi ea repudiandae et qui
+            dolorum, accusantium mollitia dicta exercitationem corrupti.
+          </p>
+          <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
+
+          </p>
+          <p class="font-weight-light text-justify mt-2 colorTexto10 tab27">
+
+          </p>
+          <hr>
+          <button (click)="cerrarSobreMi()" type="button"
+            class="btn btn-outline-warning tamanoSalir26 btn-sm">Salir</button>
         </div>
       </div>
     </div>

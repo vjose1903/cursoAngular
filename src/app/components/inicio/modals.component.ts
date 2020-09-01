@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ModalService } from "src/app/services/modal.service";
 declare let $: any;
 @Component({
   selector: "app-modals",
@@ -6,21 +7,19 @@ declare let $: any;
   styles: [],
 })
 export class ModalsComponent implements OnInit {
-  paginaActual = 1;
-
-  constructor() {}
+  constructor(public mServ: ModalService) {}
 
   ngOnInit() {}
 
   paginar(arg) {
-    this.paginaActual = arg;
+    this.mServ.paginar(arg);
   }
 
   cerrarTec() {
-    $("#modalTecnologias").modal("hide");
+    this.mServ.cerrarTec();
+  }
 
-    setTimeout(() => {
-      this.paginar(1);
-    }, 500);
+  cerrarSobreMi() {
+    this.mServ.cerrarSobreMi();
   }
 }
