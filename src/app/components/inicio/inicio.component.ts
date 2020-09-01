@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NoticiaService } from 'src/app/services/noticia.service';
 declare let $: any;
 @Component({
   selector: 'app-inicio',
@@ -8,11 +9,12 @@ declare let $: any;
 })
 export class InicioComponent implements OnInit {
   mostrarYo = true;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private noticiasService: NoticiaService) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.tooltip();
+    this.noticiasService.noticiaCompleta = false;
   }
 
   yoMostrar() {
@@ -30,6 +32,7 @@ export class InicioComponent implements OnInit {
   mostrarNoticia() {
     this.tooltip(true);
 
+    this.noticiasService.noticiaCompleta = true;
     setTimeout(() => {
       this.router.navigateByUrl('noticiaCompleta');
     }, 150);

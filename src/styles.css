@@ -359,3 +359,10 @@ html {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+.backMensajes44 {
+  background-image: url('./assets/img/fondo2.jpg');
+  border: 4px solid rgba(255, 255, 0, 0.3);
+  border-radius: 2px;
+  padding: 15px;
+}

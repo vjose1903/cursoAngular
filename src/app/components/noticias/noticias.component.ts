@@ -59,13 +59,15 @@ export class NoticiasComponent implements OnInit {
     },
   ];
 
-  constructor(private noticiaService: NoticiaService, private router: Router) {}
+  constructor(private noticiaServices: NoticiaService, private router: Router) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.noticiaServices.noticiaCompleta = false;
   }
   mostrarNoticia(noticia) {
-    this.noticiaService.noticiaSelected = noticia;
+    this.noticiaServices.noticiaSelected = noticia;
+    this.noticiaServices.noticiaCompleta = true;
     this.router.navigateByUrl('noticiaCompleta');
   }
 }
