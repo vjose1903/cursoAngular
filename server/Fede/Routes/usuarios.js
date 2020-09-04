@@ -14,16 +14,44 @@ usuariosRutas.post('/crear', (req, res) => {
         password: bcrypt_1.default.hashSync(req.body.password, 10),
     };
     // Grabar usuario en base de datos
-    usuarios_1.Usuario.create(usuario).then((usuariosDB) => {
+    usuarios_1.Usuario.create(usuario)
+        .then((usuariosDB) => {
         res.json({
             ok: true,
             usuario: usuariosDB,
         });
-    }).catch(err => {
+    })
+        .catch((err) => {
         res.json({
             ok: false,
-            err
+            err,
         });
+    });
+});
+// crear usuario
+usuariosRutas.post('/entrar', (req, res) => {
+    const body = req.body;
+    usuarios_1.Usuario.findOne({ nombre: body.nombre }, (err, usuarioDB) => {
+        if (err)
+            throw err;
+        if (!usuarioDB) {
+            return res.json({
+                ok: false,
+                mensaje: 'Invalid data',
+            });
+        }
+        if (usuarioDB.compararContrasena(body.password)) {
+            res.json({
+                ok: true,
+                token: '123',
+            });
+        }
+        else {
+            res.json({
+                ok: false,
+                token: 'Invalid data',
+            });
+        }
     });
 });
 exports.default = usuariosRutas;
