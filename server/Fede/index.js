@@ -7,12 +7,14 @@ const server_1 = __importDefault(require("./clases/server"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const usuarios_1 = __importDefault(require("./Routes/usuarios"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const contacto_1 = __importDefault(require("./Routes/contacto"));
 const server = new server_1.default();
 // bodyParse
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
 // rutas
 server.app.use('/usuario', usuarios_1.default);
+server.app.use('/contacto', contacto_1.default);
 // conectar DB
 mongoose_1.default.connect('mongodb://localhost:27017/FedeDJBase', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
     if (err)

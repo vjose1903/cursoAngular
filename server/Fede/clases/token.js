@@ -26,5 +26,5 @@ class Token {
     }
 }
 Token.semilla = 'semilla-seed,privacityPorpia-FedeDj';
-Token.caducidad = '1d';
+Token.caducidad = '1h';
 exports.default = Token;

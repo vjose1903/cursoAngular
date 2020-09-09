@@ -2,6 +2,7 @@ import Server from './clases/server';
 import mongoose from 'mongoose'
 import usuariosRutas from './Routes/usuarios';
 import bodyParser from 'body-parser';
+import contactoRutas from './Routes/contacto';
 
 const server = new Server();
 
@@ -13,6 +14,7 @@ server.app.use(bodyParser.json())
 
 // rutas
 server.app.use('/usuario',usuariosRutas)
+server.app.use('/contacto',contactoRutas)
 
 // conectar DB
 

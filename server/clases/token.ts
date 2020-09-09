@@ -2,7 +2,7 @@ import jwt from'jsonwebtoken'
 export default class Token{
     
     private static semilla: string ='semilla-seed,privacityPorpia-FedeDj';
-    private static caducidad: string ='1d';
+    private static caducidad: string ='1h';
 
     constructor(){
     }
