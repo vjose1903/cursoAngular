@@ -23,7 +23,19 @@ contactoRutas.post('/', (req: any, res: Response) => {
     });
 });
 
+// eliminar mensajes
 
+contactoRutas.delete('/:id', (req: any, res: Response) => {
+  const id = req.params.id;
+  Contacto.findByIdAndRemove(id, (err, contactoBorrar)=>{
+    if(err) throw err;
+    res.json({
+      ok: true,
+      mensaje:'Mensaje eliminado',
+      body: contactoBorrar
+    })
+  })
+})
 
 // Get usuario
 contactoRutas.get('/', async (req: any, res: Response) => {

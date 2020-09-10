@@ -26,6 +26,19 @@ contactoRutas.post('/', (req, res) => {
         res.json(err);
     });
 });
+// eliminar mensajes
+contactoRutas.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    contacto_1.Contacto.findByIdAndRemove(id, (err, contactoBorrar) => {
+        if (err)
+            throw err;
+        res.json({
+            ok: true,
+            mensaje: 'Mensaje eliminado',
+            body: contactoBorrar
+        });
+    });
+});
 // Get usuario
 contactoRutas.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
     const user = yield usuarios_1.Usuario.find()
