@@ -5,7 +5,7 @@ export const verificarToken = (req: any, res: Response, next: NextFunction) => {
   const usuarioToken = req.get('miToken') || '';
   Token.compararToken(usuarioToken)
     .then((decoded: any) => {
-      req.usario = decoded.usuario;
+      req.usuario = decoded.usuario;
       next();
     })
     .catch((err) => {    

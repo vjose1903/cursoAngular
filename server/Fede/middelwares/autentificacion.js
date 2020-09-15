@@ -8,7 +8,7 @@ exports.verificarToken = (req, res, next) => {
     const usuarioToken = req.get('miToken') || '';
     token_1.default.compararToken(usuarioToken)
         .then((decoded) => {
-        req.usario = decoded.usuario;
+        req.usuario = decoded.usuario;
         next();
     })
         .catch((err) => {

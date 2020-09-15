@@ -1,28 +1,28 @@
 import { Router, Request, Response } from 'express';
 import { verificarToken } from '../middelwares/autentificacion';
 import { ImagenesYo } from '../models/imagenesYo';
+import FileSystemYo from '../clases/flileSystemYo';
 
 const yoRutas = Router();
+const fileSystemYo = new FileSystemYo();
 
 // crear mensaje
 yoRutas.post('/', verificarToken, (req: any, res: Response) => {
-  const body= req.body;
-  const file= req.files.img;
+  const body = req.body;
+  const file = req.files.img;
 
-  body.img = file.name
+  body.img = file.name;
 
-  console.log(file);
-  console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
-  console.log('body ', body);
-  console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
   
-
   ImagenesYo.create(body)
     .then((imgYoDB) => {
       res.json({
         ok: true,
-         imgYoDB,
+        imgYoDB,
       });
+      
+      fileSystemYo.guardarImagenesYo(file, req.usuario.nombre);
+
     })
     .catch((err) => {
       res.json(err);

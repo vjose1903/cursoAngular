@@ -1,24 +1,26 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const autentificacion_1 = require("../middelwares/autentificacion");
 const imagenesYo_1 = require("../models/imagenesYo");
+const flileSystemYo_1 = __importDefault(require("../clases/flileSystemYo"));
 const yoRutas = express_1.Router();
+const fileSystemYo = new flileSystemYo_1.default();
 // crear mensaje
 yoRutas.post('/', autentificacion_1.verificarToken, (req, res) => {
     const body = req.body;
     const file = req.files.img;
     body.img = file.name;
-    console.log(file);
-    console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
-    console.log('body ', body);
-    console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
     imagenesYo_1.ImagenesYo.create(body)
         .then((imgYoDB) => {
         res.json({
             ok: true,
             imgYoDB,
         });
+        fileSystemYo.guardarImagenesYo(file, req.usuario.nombre);
     })
         .catch((err) => {
         res.json(err);
