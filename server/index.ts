@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import contactoRutas from './Routes/contacto';
 import yoRutas from './Routes/imagenesYo';
 import fileupload from 'express-fileupload';
+import sobreMiRutas from './Routes/sobreMi';
 
 const server = new Server();
 
@@ -20,6 +21,7 @@ server.app.use(fileupload());
 server.app.use('/usuario', usuariosRutas);
 server.app.use('/contacto', contactoRutas);
 server.app.use('/uploadYo', yoRutas);
+server.app.use('/sobreMi', sobreMiRutas);
 
 // conectar DB
 
