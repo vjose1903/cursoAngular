@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { verificarToken } from '../middelwares/autentificacion';
 import { ImagenesYo } from '../models/imagenesYo';
+
 import FileSystemYo from '../clases/flileSystemYo';
 
 const yoRutas = Router();
@@ -43,17 +44,14 @@ yoRutas.post('/', verificarToken, (req: any, res: Response) => {
 //   })
 // })
 
-// // Get usuario
-// yoRutas.get('/', async (req: any, res: Response) => {
+// Mostrar imagenes por url
+yoRutas.get('/files/:img',  (req: any, res: Response) => {
 
-//   const user = await Usuario.find()
-//       .limit(1) // Limit es para el número de usuarios que queremos obtener
-//       .exec();
+  const img = req.params.img ;
 
-//   res.json({
-//       ok: true,
-//       user
-//   });
-// });
+  const imagen = fileSystemYo.getImgUrl(img);
+
+  res.sendFile(imagen);
+});
 
 export default yoRutas;

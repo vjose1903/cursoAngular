@@ -38,14 +38,10 @@ yoRutas.post('/', autentificacion_1.verificarToken, (req, res) => {
 //     })
 //   })
 // })
-// // Get usuario
-// yoRutas.get('/', async (req: any, res: Response) => {
-//   const user = await Usuario.find()
-//       .limit(1) // Limit es para el número de usuarios que queremos obtener
-//       .exec();
-//   res.json({
-//       ok: true,
-//       user
-//   });
-// });
+// Mostrar imagenes por url
+yoRutas.get('/files/:img', (req, res) => {
+    const img = req.params.img;
+    const imagen = fileSystemYo.getImgUrl(img);
+    res.sendFile(imagen);
+});
 exports.default = yoRutas;

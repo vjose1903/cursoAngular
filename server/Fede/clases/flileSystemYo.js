@@ -31,5 +31,8 @@ class FileSystemYo {
         }
         return pathYo;
     }
+    getImgUrl(img) {
+        return path_1.default.resolve(__dirname, '../uploads/', 'victor', img);
+    }
 }
 exports.default = FileSystemYo;

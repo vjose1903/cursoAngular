@@ -32,4 +32,9 @@ export default class FileSystemYo {
 
     return pathYo;
   }
+
+
+  getImgUrl(img: string) {
+    return path.resolve(__dirname, '../uploads/', 'victor', img);
+  }
 }
