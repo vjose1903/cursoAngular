@@ -54,6 +54,16 @@ sobreMiRutas.post('/update/:id', verificarToken, (req: any, res: Response) => {
     });
   });
 });
+
+// Get sobre mi
+sobreMiRutas.get('/', async (req: any, res: Response) => {
+  const sobre_mi = await sobreMi.find().sort({ _id: -1 }).exec();
+
+  res.json({
+    ok: true,
+    sobre_mi,
+  });
+});
 // eliminar mensajes
 
 sobreMiRutas.delete('/:id', (req: any, res: Response) => {
@@ -65,18 +75,6 @@ sobreMiRutas.delete('/:id', (req: any, res: Response) => {
       mensaje: 'Mensaje eliminado',
       body: contactoBorrar,
     });
-  });
-});
-
-// Get usuario
-sobreMiRutas.get('/', async (req: any, res: Response) => {
-  const user = await Usuario.find()
-    .limit(1) // Limit es para el número de usuarios que queremos obtener
-    .exec();
-
-  res.json({
-    ok: true,
-    user,
   });
 });
 

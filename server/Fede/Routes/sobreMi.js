@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const usuarios_1 = require("../models/usuarios");
 const autentificacion_1 = require("../middelwares/autentificacion");
 const sobreMi_1 = require("../models/sobreMi");
 const sobreMiRutas = express_1.Router();
@@ -54,6 +53,14 @@ sobreMiRutas.post('/update/:id', autentificacion_1.verificarToken, (req, res) =>
         });
     });
 });
+// Get sobre mi
+sobreMiRutas.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const sobre_mi = yield sobreMi_1.sobreMi.find().sort({ _id: -1 }).exec();
+    res.json({
+        ok: true,
+        sobre_mi,
+    });
+}));
 // eliminar mensajes
 sobreMiRutas.delete('/:id', (req, res) => {
     const id = req.params.id;
@@ -67,14 +74,4 @@ sobreMiRutas.delete('/:id', (req, res) => {
         });
     });
 });
-// Get usuario
-sobreMiRutas.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const user = yield usuarios_1.Usuario.find()
-        .limit(1) // Limit es para el número de usuarios que queremos obtener
-        .exec();
-    res.json({
-        ok: true,
-        user,
-    });
-}));
 exports.default = sobreMiRutas;
