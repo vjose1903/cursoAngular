@@ -64,18 +64,6 @@ sobreMiRutas.get('/', async (req: any, res: Response) => {
     sobre_mi,
   });
 });
-// eliminar mensajes
 
-sobreMiRutas.delete('/:id', (req: any, res: Response) => {
-  const id = req.params.id;
-  sobreMi.findByIdAndRemove(id, (err, contactoBorrar) => {
-    if (err) throw err;
-    res.json({
-      ok: true,
-      mensaje: 'Mensaje eliminado',
-      body: contactoBorrar,
-    });
-  });
-});
 
 export default sobreMiRutas;

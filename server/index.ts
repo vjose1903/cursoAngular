@@ -6,6 +6,7 @@ import contactoRutas from './Routes/contacto';
 import yoRutas from './Routes/imagenesYo';
 import fileupload from 'express-fileupload';
 import sobreMiRutas from './Routes/sobreMi';
+import tecnologiasRutas from './Routes/tecnologia';
 
 const server = new Server();
 
@@ -22,6 +23,7 @@ server.app.use('/usuario', usuariosRutas);
 server.app.use('/contacto', contactoRutas);
 server.app.use('/uploadYo', yoRutas);
 server.app.use('/sobreMi', sobreMiRutas);
+server.app.use('/tecnologia', tecnologiasRutas);
 
 // conectar DB
 

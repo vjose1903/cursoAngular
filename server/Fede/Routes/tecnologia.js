@@ -10,26 +10,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const autentificacion_1 = require("../middelwares/autentificacion");
-const sobreMi_1 = require("../models/sobreMi");
-const sobreMiRutas = express_1.Router();
-// crear sobre mi
-sobreMiRutas.post('/', autentificacion_1.verificarToken, (req, res) => {
+const tecnologia_1 = require("../models/tecnologia");
+const tecnologiasRutas = express_1.Router();
+// crear tecnologia
+tecnologiasRutas.post('/', autentificacion_1.verificarToken, (req, res) => {
     const body = req.body;
-    body.titulo = 'Victor Jose Vasquez Santos';
-    sobreMi_1.sobreMi
+    tecnologia_1.Tecnologias
         .create(body)
-        .then((sobreMiDB) => {
+        .then((tecnologiaDB) => {
         res.json({
             ok: true,
-            contacto: sobreMiDB,
+            tecnologia: tecnologiaDB,
         });
     })
         .catch((err) => {
         res.json(err);
     });
 });
-// actualiar sobre mi
-sobreMiRutas.post('/update/:id', autentificacion_1.verificarToken, (req, res) => {
+// actualiar tecnologia
+tecnologiasRutas.post('/update/:id', autentificacion_1.verificarToken, (req, res) => {
     const id = req.params.id;
     const sobre_mi = {
         texto1: req.body.texto1,
@@ -38,7 +37,7 @@ sobreMiRutas.post('/update/:id', autentificacion_1.verificarToken, (req, res) =>
         texto4: req.body.texto4,
         texto: req.body.texto,
     };
-    sobreMi_1.sobreMi.findByIdAndUpdate(id, sobre_mi, { new: true }, (err, sobreMi) => {
+    tecnologia_1.Tecnologias.findByIdAndUpdate(id, sobre_mi, { new: true }, (err, tecnologia) => {
         if (err)
             throw err;
         if (!sobre_mi) {
@@ -53,12 +52,12 @@ sobreMiRutas.post('/update/:id', autentificacion_1.verificarToken, (req, res) =>
         });
     });
 });
-// Get sobre mi
-sobreMiRutas.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const sobre_mi = yield sobreMi_1.sobreMi.find().sort({ _id: -1 }).exec();
+// Get tecnologia
+tecnologiasRutas.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const sobre_mi = yield tecnologia_1.Tecnologias.find().sort({ _id: -1 }).exec();
     res.json({
         ok: true,
         sobre_mi,
     });
 }));
-exports.default = sobreMiRutas;
+exports.default = tecnologiasRutas;

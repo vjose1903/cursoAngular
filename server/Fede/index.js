@@ -11,6 +11,7 @@ const contacto_1 = __importDefault(require("./Routes/contacto"));
 const imagenesYo_1 = __importDefault(require("./Routes/imagenesYo"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const sobreMi_1 = __importDefault(require("./Routes/sobreMi"));
+const tecnologia_1 = __importDefault(require("./Routes/tecnologia"));
 const server = new server_1.default();
 // bodyParse
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -22,6 +23,7 @@ server.app.use('/usuario', usuarios_1.default);
 server.app.use('/contacto', contacto_1.default);
 server.app.use('/uploadYo', imagenesYo_1.default);
 server.app.use('/sobreMi', sobreMi_1.default);
+server.app.use('/tecnologia', tecnologia_1.default);
 // conectar DB
 mongoose_1.default.connect('mongodb://localhost:27017/FedeDJBase', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
     if (err)
