@@ -13,11 +13,12 @@ const usuarios_1 = require("../models/usuarios");
 const autentificacion_1 = require("../middelwares/autentificacion");
 const sobreMi_1 = require("../models/sobreMi");
 const sobreMiRutas = express_1.Router();
-// crear mensaje
+// crear sobre mi
 sobreMiRutas.post('/', autentificacion_1.verificarToken, (req, res) => {
     const body = req.body;
     body.titulo = 'Victor Jose Vasquez Santos';
-    sobreMi_1.sobreMi.create(body)
+    sobreMi_1.sobreMi
+        .create(body)
         .then((sobreMiDB) => {
         res.json({
             ok: true,
@@ -26,6 +27,31 @@ sobreMiRutas.post('/', autentificacion_1.verificarToken, (req, res) => {
     })
         .catch((err) => {
         res.json(err);
+    });
+});
+// actualiar sobre mi
+sobreMiRutas.post('/update/:id', autentificacion_1.verificarToken, (req, res) => {
+    const id = req.params.id;
+    const sobre_mi = {
+        texto1: req.body.texto1,
+        texto2: req.body.texto2,
+        texto3: req.body.texto3,
+        texto4: req.body.texto4,
+        texto: req.body.texto,
+    };
+    sobreMi_1.sobreMi.findByIdAndUpdate(id, sobre_mi, { new: true }, (err, sobreMi) => {
+        if (err)
+            throw err;
+        if (!sobre_mi) {
+            return res.json({
+                ok: false,
+                mensaje: 'invalid Data',
+            });
+        }
+        res.json({
+            ok: true,
+            sobre_mi,
+        });
     });
 });
 // eliminar mensajes
